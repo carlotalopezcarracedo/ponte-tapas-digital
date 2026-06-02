@@ -6,16 +6,20 @@ interface LogoProps {
 export function Logo({ size = 56, className = "" }: LogoProps) {
   return (
     <div
-      className={`flex items-center justify-center rounded-full bg-ink text-cream ${className}`}
+      className={`flex flex-col items-center justify-center rounded-full bg-ink text-cream shadow-sm ${className}`}
       style={{ width: size, height: size }}
       aria-label="Ponte Tapas"
     >
       <span
-        className="font-script leading-none text-cream"
-        style={{ fontSize: size * 0.32, letterSpacing: "-0.02em" }}
+        className="font-script leading-[0.95] text-cream text-center"
+        style={{ fontSize: size * 0.3, letterSpacing: "-0.01em" }}
       >
         Ponte
-        <br />
+      </span>
+      <span
+        className="font-script leading-[0.95] text-cream text-center"
+        style={{ fontSize: size * 0.3, letterSpacing: "-0.01em", marginTop: size * 0.02 }}
+      >
         Tapas
       </span>
     </div>
