@@ -305,11 +305,11 @@ function Landing() {
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-20">
           {HIGHLIGHTS.map((h, idx) => (
             <article
               key={h.title}
-              className={`group relative rounded-3xl bg-card border border-border/60 overflow-hidden hover:border-ink/40 transition ${idx % 2 === 1 ? "lg:translate-y-8" : ""}`}
+              className={`group relative rounded-3xl bg-card border border-border/60 overflow-hidden shadow-sm transition duration-300 hover:border-ink/40 hover:shadow-xl ${idx % 2 === 1 ? "lg:translate-y-8 lg:mb-8" : ""}`}
             >
               <div className="aspect-[4/5] overflow-hidden bg-stone">
                 <img
