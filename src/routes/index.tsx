@@ -7,6 +7,8 @@ import dish2 from "@/assets/dish-2.jpg";
 import dish3 from "@/assets/dish-3.jpg";
 import dish4 from "@/assets/dish-4.jpg";
 
+const SITE_BASE_URL = import.meta.env.BASE_URL;
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -22,9 +24,9 @@ export const Route = createFileRoute("/")({
         content: "Tapas, raciones y buen ambiente en Pontevedra.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: SITE_BASE_URL },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: SITE_BASE_URL }],
   }),
   component: Landing,
 });

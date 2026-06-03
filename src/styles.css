@@ -1,7 +1,6 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -20,20 +19,13 @@
     font-display: swap;
     src: url("https://fonts.gstatic.com/s/caveat/v18/Wnz6HAc5bAfYB2QRah7pcpNvOx-pjfJ9SIKjYBxPigs.woff2") format("woff2");
   }
-  @font-face {
-    font-family: "Bromarkers";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/__l5e/assets-v1/4a2a8e8c-0701-49eb-a3a0-cb49d9bd14d5/BromarkersDemoRegular.ttf") format("truetype");
-  }
 }
 
 @theme inline {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-script: "Bromarkers", "Caveat", cursive;
-  --font-marker: "Bromarkers", "Caveat", cursive;
-  --font-brush: "Bromarkers", "Caveat", cursive;
+  --font-script: "Caveat", cursive;
+  --font-marker: "Caveat", cursive;
+  --font-brush: "Caveat", cursive;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

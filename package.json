@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
+    "build:pages": "vite build && node scripts/prerender-pages.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
+    "preview:pages": "node scripts/preview-pages.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
