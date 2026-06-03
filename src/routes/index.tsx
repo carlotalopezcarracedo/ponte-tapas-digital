@@ -116,6 +116,8 @@ const TESTIMONIALS = [
   },
 ];
 
+const TESTIMONIAL_LOOP = [...TESTIMONIALS, ...TESTIMONIALS];
+
 const MARQUEE = ["tapas", "raciones", "vino de la tierra", "buen ambiente", "cocina casera", "Pontevedra"];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -388,21 +390,16 @@ function Landing() {
               Palabras de <span className="text-sky">la clientela</span>.
             </h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {TESTIMONIALS.map((t, i) => (
+          <div className="relative overflow-hidden">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-stone/70 to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-stone/70 to-transparent" />
+            <div className="flex w-max gap-6 animate-testimonial-scroll hover:[animation-play-state:paused]">
+            {TESTIMONIAL_LOOP.map((t, i) => (
               <figure
-                key={i}
-                className="bg-card rounded-3xl p-7 border border-border/60 shadow-sm flex flex-col gap-5"
+                key={`${t.author}-${i}`}
+                className="w-[calc(100vw-2.5rem)] shrink-0 bg-card rounded-3xl p-8 border border-border/60 flex flex-col gap-6 shadow-sm sm:w-[calc((100vw-4rem)/2)] lg:w-[calc((72rem-3rem)/3)]"
               >
-                <figcaption className="flex items-start gap-3">
-                  <div className="h-11 w-11 shrink-0 rounded-full bg-ink text-cream flex items-center justify-center font-script text-3xl">
-                    {t.author[0]}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-base font-semibold leading-tight">{t.author}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{t.meta}</p>
-                  </div>
-                </figcaption>
+                <span className="font-script text-7xl leading-none text-sky -rotate-12 self-start">"</span>
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
                     <span className="text-[18px] leading-none tracking-[0.03em] text-[#fbbc04]" aria-label="5 estrellas">
@@ -412,14 +409,23 @@ function Landing() {
                   </div>
                   <p className="text-sm text-muted-foreground">{t.context}</p>
                 </div>
-                <blockquote className="text-base leading-relaxed text-foreground/85">
+                <blockquote className="review-quote text-lg leading-relaxed text-foreground/85">
                   {t.quote}
                 </blockquote>
-                <p className="mt-auto pt-4 border-t border-border/60 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  Google Reviews
-                </p>
+                <figcaption className="mt-auto flex items-center gap-3 pt-4 border-t border-border/60">
+                  <div className="h-9 w-9 rounded-full bg-ink text-cream flex items-center justify-center font-script text-xl">
+                    {t.author[0]}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium">{t.author}</p>
+                    <p className="truncate text-xs text-muted-foreground">
+                      Google Reviews · {t.meta}
+                    </p>
+                  </div>
+                </figcaption>
               </figure>
             ))}
+            </div>
           </div>
         </div>
       </section>
