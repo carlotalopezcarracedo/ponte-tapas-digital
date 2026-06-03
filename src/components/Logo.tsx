@@ -13,14 +13,14 @@ export function Logo({ size = 56, className = "", variant = "dark" }: LogoProps)
       aria-label="Ponte Tapas"
     >
       <span
-        className="font-script leading-[0.85] text-center"
-        style={{ fontSize: size * 0.32, transform: "rotate(-6deg)" }}
+        className="font-script leading-[0.9] text-center"
+        style={{ fontSize: size * 0.24, transform: "rotate(-6deg)" }}
       >
         Ponte
       </span>
       <span
-        className="font-script leading-[0.85] text-center"
-        style={{ fontSize: size * 0.32, transform: "rotate(-6deg) translateX(8%)", marginTop: size * 0.04 }}
+        className="font-script leading-[0.9] text-center"
+        style={{ fontSize: size * 0.24, transform: "rotate(-6deg) translateX(6%)", marginTop: size * 0.03 }}
       >
         Tapas
       </span>
