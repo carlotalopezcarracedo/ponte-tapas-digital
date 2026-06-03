@@ -109,3 +109,29 @@
     color: var(--ink);
   }
 }
+
+@utility font-brush {
+  font-family: var(--font-brush);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-float { animation: float-slow 6s ease-in-out infinite; }
+
+.noise-overlay {
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.06) 1px, transparent 0);
+  background-size: 4px 4px;
+}
+
