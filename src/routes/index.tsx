@@ -66,9 +66,54 @@ const HIGHLIGHTS = [
 ];
 
 const TESTIMONIALS = [
-  { quote: "El sitio perfecto para tapear con calma. Trato 10 y el pulpo, brutal.", author: "María C." },
-  { quote: "Cocina honesta, ambiente local y nada postureo. Repetiremos seguro.", author: "Iago R." },
-  { quote: "Mejor tarta de queso de Pontevedra. Punto.", author: "Lucía F." },
+  {
+    author: "Berta U G",
+    meta: "Local Guide · 48 reseñas · 98 fotos",
+    date: "Fecha de edición: Hace 4 meses",
+    context: "Comida | 10-20 €",
+    quote:
+      "Muy buen sitio, tanto para el menú del día como para ir a la carta. Personal amable y comida muy rica. Recomendable si estás por Pontevedra sin duda.",
+  },
+  {
+    author: "Andrea Fernández Romero",
+    meta: "Local Guide · 43 reseñas · 94 fotos",
+    date: "Hace 9 meses",
+    context: "Cena | 20-30 €",
+    quote:
+      "Lo descubrimos de casualidad, nos buscaron mesa rápidamente y nos atendieron muy bien. Los platos presentados sin pretensiones pero espectaculares de sabor!!! Recomendable al 100%",
+  },
+  {
+    author: "Ismael Llorens",
+    meta: "Local Guide · 54 reseñas · 46 fotos",
+    date: "Hace 9 meses",
+    context: "Comida | 20-30 €",
+    quote:
+      "Mi primera visita con la familia en Pontevedra, restaurante en casco antiguo, ambiente muy agradable y personal muy atento y simpático, la carta no muy amplia pero con una selección variada y de calidad, los precios muy razonables y los platos abundantes, sin duda un buen restaurante para comer, lo recomiendo, en futuras visitas volveremos.",
+  },
+  {
+    author: "Patricia Lopez",
+    meta: "Local Guide · 46 reseñas · 55 fotos",
+    date: "Hace un año",
+    context: "Comí allí | Comida | 10-20 €",
+    quote:
+      "Buen sitio para comer. Comimos menú del día. 14 euros dos platos, postre y café con 4 opciones de cada a elegir. Tiene también para tapear. Comida casera rica, servicio rápido y amable",
+  },
+  {
+    author: "Alexis",
+    meta: "Local Guide · 132 reseñas · 226 fotos",
+    date: "Hace un año",
+    context: "Comida",
+    quote:
+      "Lo encontramos paseando. Es un bar de tapeo y para comer bonito, tiene un ambiente acogedor. La camarera fue muy atenta y nos atendió rápido. Pedimos croquetas (varios tipos), empanada y cordón bleu. Todo muy rico, con buenas raciones y un precio económico. Completamente recomendable.",
+  },
+  {
+    author: "Alejandro Tocino",
+    meta: "Local Guide · 141 reseñas · 21 fotos",
+    date: "Hace 10 meses",
+    context: "20-30 €",
+    quote:
+      "Comida muy bien preparada, atención inmejorable, un sitio tranquilo con raciones abundantes y preparadas en su punto. Las ensaladas con lechuga casera, no de bolsa",
+  },
 ];
 
 const MARQUEE = ["tapas", "raciones", "vino de la tierra", "buen ambiente", "cocina casera", "Pontevedra"];
@@ -343,25 +388,36 @@ function Landing() {
               Palabras de <span className="text-sky">la clientela</span>.
             </h2>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {TESTIMONIALS.map((t, i) => (
               <figure
                 key={i}
-                className="bg-card rounded-3xl p-8 border border-border/60 flex flex-col gap-6"
+                className="bg-card rounded-3xl p-7 border border-border/60 shadow-sm flex flex-col gap-5"
               >
-                <span className="font-script text-7xl leading-none text-sky -rotate-12 self-start">"</span>
-                <blockquote className="text-lg leading-relaxed text-foreground/85">
-                  {t.quote}
-                </blockquote>
-                <figcaption className="mt-auto flex items-center gap-3 pt-4 border-t border-border/60">
-                  <div className="h-9 w-9 rounded-full bg-ink text-cream flex items-center justify-center font-script text-xl">
+                <figcaption className="flex items-start gap-3">
+                  <div className="h-11 w-11 shrink-0 rounded-full bg-ink text-cream flex items-center justify-center font-script text-3xl">
                     {t.author[0]}
                   </div>
-                  <div>
-                    <p className="text-sm font-medium">{t.author}</p>
-                    <p className="text-xs text-muted-foreground">Google Reviews</p>
+                  <div className="min-w-0">
+                    <p className="text-base font-semibold leading-tight">{t.author}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{t.meta}</p>
                   </div>
                 </figcaption>
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                    <span className="text-[18px] leading-none tracking-[0.03em] text-[#fbbc04]" aria-label="5 estrellas">
+                      ★★★★★
+                    </span>
+                    <span className="text-muted-foreground">{t.date}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{t.context}</p>
+                </div>
+                <blockquote className="text-base leading-relaxed text-foreground/85">
+                  {t.quote}
+                </blockquote>
+                <p className="mt-auto pt-4 border-t border-border/60 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  Google Reviews
+                </p>
               </figure>
             ))}
           </div>
