@@ -131,6 +131,10 @@
   animation: marquee 40s linear infinite;
 }
 
+.testimonial-viewport {
+  width: 100%;
+  overflow: hidden;
+}
 .testimonial-track {
   --testimonial-gap: 1.5rem;
   --testimonial-visible: 1;
@@ -138,15 +142,18 @@
     (100% - ((var(--testimonial-visible) - 1) * var(--testimonial-gap))) /
       var(--testimonial-visible)
   );
+  width: 100%;
   display: flex;
   gap: var(--testimonial-gap);
   transition: transform 720ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
 }
 .testimonial-track--reset {
   transition: none;
 }
 .testimonial-card {
   flex: 0 0 var(--testimonial-card-width);
+  min-width: 0;
 }
 .review-quote {
   display: -webkit-box;

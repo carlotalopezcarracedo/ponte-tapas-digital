@@ -426,9 +426,7 @@ function Landing() {
               Palabras de <span className="text-sky">la clientela</span>.
             </h2>
           </div>
-          <div className="relative overflow-hidden">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-stone/70 to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-stone/70 to-transparent" />
+          <div className="testimonial-viewport relative">
             <div
               className={`testimonial-track ${testimonialTransition ? "" : "testimonial-track--reset"}`}
               style={{
