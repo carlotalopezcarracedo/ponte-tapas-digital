@@ -2,12 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Logo } from "@/components/Logo";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
-import dish1 from "@/assets/dish-1.jpg";
-import dish2 from "@/assets/dish-2.jpg";
-import dish3 from "@/assets/dish-3.jpg";
-import dish4 from "@/assets/dish-4.jpg";
 
 const SITE_BASE_URL = import.meta.env.BASE_URL;
+const publicImage = (fileName: string) => `${SITE_BASE_URL}${fileName}`;
+
+const PRODUCT_IMAGES = {
+  pulpo: publicImage("ChatGPT%20Image%203%20jun%202026,%2015_41_47.png"),
+  fabada: publicImage("ChatGPT%20Image%203%20jun%202026,%2015_51_11.png"),
+  vieiras: publicImage("ChatGPT%20Image%203%20jun%202026,%2015_48_46.png"),
+  hamburguesitas: publicImage("ChatGPT%20Image%203%20jun%202026,%2015_43_13.png"),
+  tartaletas: publicImage("ChatGPT%20Image%203%20jun%202026,%2015_55_52.png"),
+  gyozas: publicImage("ChatGPT%20Image%203%20jun%202026,%2015_46_16.png"),
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,18 +49,20 @@ const NAV = [
 ];
 
 const CATEGORIES = [
-  { name: "Tapas", desc: "Pequeños bocados para abrir boca, hechos al momento.", items: ["Croquetas de jamón", "Pulpo a feira", "Tortilla jugosa", "Pimientos de Padrón"] },
-  { name: "Raciones", desc: "Para compartir en el centro de la mesa, sin prisa.", items: ["Zorza con patatas", "Calamares a la andaluza", "Ensaladilla de la casa", "Chipirones a la plancha"] },
-  { name: "Bocadillos", desc: "Pan recién hecho y rellenos sencillos y honestos.", items: ["Lacón con grelos", "Lomo y queso", "Tortilla", "Calamares"] },
-  { name: "Postres", desc: "Caseros, dulces y nada complicados.", items: ["Tarta de queso", "Filloas", "Brownie casero", "Helado artesano"] },
+  { name: "Mar", desc: "Producto gallego servido sin complicaciones.", items: ["Pulpo á feira", "Vieiras"] },
+  { name: "Cuchara", desc: "Platos calientes para comer despacio.", items: ["Fabada"] },
+  { name: "Bocados", desc: "Pequeñas piezas para pedir varias y compartir.", items: ["Hamburguesitas", "Tartaletas de espinaca", "Gyozas vegetales"] },
+  { name: "Para compartir", desc: "Un poco de todo en el centro de la mesa.", items: ["Pulpo á feira", "Vieiras", "Hamburguesitas", "Gyozas vegetales"] },
   { name: "Bebidas", desc: "Cañas frías, vinos de la tierra y refrescos.", items: ["Albariño", "Mencía", "Estrella Galicia", "Vermut de grifo"] },
 ];
 
 const HIGHLIGHTS = [
-  { title: "Pulpo a feira", tag: "Imprescindible", img: dish2 },
-  { title: "Croquetas caseras", tag: "Cremositas", img: dish3 },
-  { title: "Tabla para compartir", tag: "En el centro", img: dish1 },
-  { title: "Tarta de queso", tag: "Casera", img: dish4 },
+  { title: "Pulpo á feira", tag: "Imprescindible", img: PRODUCT_IMAGES.pulpo },
+  { title: "Fabada", tag: "De cuchara", img: PRODUCT_IMAGES.fabada },
+  { title: "Vieiras", tag: "Mar de Galicia", img: PRODUCT_IMAGES.vieiras },
+  { title: "Hamburguesitas", tag: "Para compartir", img: PRODUCT_IMAGES.hamburguesitas },
+  { title: "Tartaletas de espinaca", tag: "Cremosas", img: PRODUCT_IMAGES.tartaletas },
+  { title: "Gyozas vegetales", tag: "Vegetal", img: PRODUCT_IMAGES.gyozas },
 ];
 
 const TESTIMONIALS = [
@@ -297,7 +305,7 @@ function Landing() {
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {HIGHLIGHTS.map((h, idx) => (
             <article
               key={h.title}
@@ -365,16 +373,16 @@ function Landing() {
         <div className="mb-14 max-w-2xl">
           <SectionLabel>Galería</SectionLabel>
           <h2 className="font-script text-7xl sm:text-8xl leading-[0.85] mt-6 -rotate-[1deg]">
-            Un vistazo<br />al <span className="text-sky">local</span>.
+            Un vistazo<br />a los <span className="text-sky">platos</span>.
           </h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          {[dish1, aboutImg, dish2, heroImg, dish3, dish4, aboutImg, dish1].map((img, i) => (
+          {HIGHLIGHTS.map((dish, i) => (
             <div
-              key={i}
+              key={dish.title}
               className={`overflow-hidden rounded-2xl bg-stone ${i % 3 === 0 ? "row-span-2 aspect-[3/5]" : "aspect-square"}`}
             >
-              <img src={img} alt="" className="h-full w-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <img src={dish.img} alt={dish.title} className="h-full w-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
             </div>
           ))}
         </div>
