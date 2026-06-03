@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState, type ReactNode } from "react";
 import { Logo } from "@/components/Logo";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
@@ -117,10 +118,11 @@ const TESTIMONIALS = [
 ];
 
 const TESTIMONIAL_LOOP = [...TESTIMONIALS, ...TESTIMONIALS];
+const TESTIMONIAL_RESET_DELAY = 760;
 
 const MARQUEE = ["tapas", "raciones", "vino de la tierra", "buen ambiente", "cocina casera", "Pontevedra"];
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
       <span className="h-px w-10 bg-ink/40" />
@@ -130,6 +132,40 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 function Landing() {
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [testimonialTransition, setTestimonialTransition] = useState(true);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setTestimonialIndex((current) => current + 1);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (testimonialIndex !== TESTIMONIALS.length) return;
+
+    let firstFrame = 0;
+    let secondFrame = 0;
+    const reset = window.setTimeout(() => {
+      setTestimonialTransition(false);
+      setTestimonialIndex(0);
+
+      firstFrame = window.requestAnimationFrame(() => {
+        secondFrame = window.requestAnimationFrame(() => {
+          setTestimonialTransition(true);
+        });
+      });
+    }, TESTIMONIAL_RESET_DELAY);
+
+    return () => {
+      window.clearTimeout(reset);
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+    };
+  }, [testimonialIndex]);
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* NAVBAR */}
@@ -393,38 +429,43 @@ function Landing() {
           <div className="relative overflow-hidden">
             <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-stone/70 to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-stone/70 to-transparent" />
-            <div className="flex w-max gap-6 animate-testimonial-scroll hover:[animation-play-state:paused]">
-            {TESTIMONIAL_LOOP.map((t, i) => (
-              <figure
-                key={`${t.author}-${i}`}
-                className="w-[calc(100vw-2.5rem)] shrink-0 bg-card rounded-3xl p-8 border border-border/60 flex flex-col gap-6 shadow-sm sm:w-[calc((100vw-4rem)/2)] lg:w-[calc((72rem-3rem)/3)]"
+            <div
+              className={`testimonial-track ${testimonialTransition ? "" : "testimonial-track--reset"}`}
+              style={{
+                transform: `translateX(calc(${testimonialIndex} * -1 * (var(--testimonial-card-width) + var(--testimonial-gap))))`,
+              }}
+            >
+              {TESTIMONIAL_LOOP.map((t, i) => (
+                <figure
+                  key={`${t.author}-${i}`}
+                  className="testimonial-card bg-card rounded-3xl p-8 border border-border/60 flex flex-col gap-6 shadow-sm"
               >
-                <span className="font-script text-7xl leading-none text-sky -rotate-12 self-start">"</span>
-                <div className="space-y-2">
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-                    <span className="text-[18px] leading-none tracking-[0.03em] text-[#fbbc04]" aria-label="5 estrellas">
-                      ★★★★★
-                    </span>
-                    <span className="text-muted-foreground">{t.date}</span>
+                  <span className="font-script text-7xl leading-none text-sky -rotate-12 self-start">"</span>
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                      <span className="text-[18px] leading-none tracking-[0.03em] text-[#fbbc04]" aria-label="5 estrellas">
+                        ★★★★★
+                      </span>
+                      <span className="text-muted-foreground">{t.date}</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{t.context}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground">{t.context}</p>
-                </div>
-                <blockquote className="review-quote text-lg leading-relaxed text-foreground/85">
-                  {t.quote}
-                </blockquote>
-                <figcaption className="mt-auto flex items-center gap-3 pt-4 border-t border-border/60">
-                  <div className="h-9 w-9 rounded-full bg-ink text-cream flex items-center justify-center font-script text-xl">
-                    {t.author[0]}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-medium">{t.author}</p>
-                    <p className="truncate text-xs text-muted-foreground">
-                      Google Reviews · {t.meta}
-                    </p>
-                  </div>
-                </figcaption>
-              </figure>
-            ))}
+                  <blockquote className="review-quote text-lg leading-relaxed text-foreground/85">
+                    {t.quote}
+                  </blockquote>
+                  <figcaption className="mt-auto flex items-center gap-3 pt-4 border-t border-border/60">
+                    <div className="h-9 w-9 rounded-full bg-ink text-cream flex items-center justify-center font-script text-xl">
+                      {t.author[0]}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium">{t.author}</p>
+                      <p className="truncate text-xs text-muted-foreground">
+                        Google Reviews · {t.meta}
+                      </p>
+                    </div>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </div>
