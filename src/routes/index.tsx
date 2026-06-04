@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { Logo } from "@/components/Logo";
-import { CONTACT, MENU_ITEM_COUNT, MENU_SECTIONS } from "@/lib/site-data";
+import { CONTACT, MENU_ITEM_COUNT, MENU_SECTIONS, OPENING_HOURS } from "@/lib/site-data";
 
 const SITE_BASE_URL = import.meta.env.BASE_URL;
 const publicImage = (fileName: string) => `${SITE_BASE_URL}${fileName}`;
@@ -269,17 +269,27 @@ function Landing() {
               honestas, raciones para compartir y vino de la tierra.
             </p>
             <div className="grid grid-cols-2 gap-6 max-w-md">
-              {[
-                { k: `${MENU_ITEM_COUNT}`, v: "platos en carta" },
-                { k: "Real", v: "carta del PDF" },
-                { k: "4,5★", v: "en Google" },
-                { k: "Casco", v: "antiguo · Pontevedra" },
-              ].map((s) => (
-                <div key={s.v} className="border-t border-ink/15 pt-4">
-                  <p className="text-3xl font-semibold leading-none tracking-tight text-ink">{s.k}</p>
-                  <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground mt-2">{s.v}</p>
-                </div>
-              ))}
+              <div className="border-t border-ink/15 pt-4">
+                <p className="text-3xl font-semibold leading-none tracking-tight text-ink">{MENU_ITEM_COUNT}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">platos en carta</p>
+              </div>
+              <div className="border-t border-ink/15 pt-4">
+                <a
+                  href={`${SITE_BASE_URL}carta`}
+                  className="inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream transition hover:opacity-90"
+                >
+                  Ver carta
+                </a>
+                <p className="mt-3 text-xs uppercase tracking-[0.16em] text-muted-foreground">platos y precios</p>
+              </div>
+              <div className="border-t border-ink/15 pt-4">
+                <p className="text-3xl font-semibold leading-none tracking-tight text-ink">4,5★</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">en Google</p>
+              </div>
+              <div className="border-t border-ink/15 pt-4">
+                <p className="text-3xl font-semibold leading-none tracking-tight text-ink">Casco</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">antiguo · Pontevedra</p>
+              </div>
             </div>
           </div>
 
@@ -312,7 +322,7 @@ function Landing() {
           <div className="mb-14 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-sky">
-                <span className="h-px w-10 bg-sky" /> Carta real
+                <span className="h-px w-10 bg-sky" /> Carta
               </div>
               <h2 className="mt-10 font-script text-7xl leading-[0.9] -rotate-[2deg] sm:text-8xl lg:text-9xl">
                 Qué vas a<br />
@@ -321,9 +331,8 @@ function Landing() {
             </div>
             <div className="max-w-md">
               <p className="text-base leading-relaxed text-cream/70">
-                Hemos recuperado la carta real del restaurante y la dejamos
-                ordenada por bloques, con precios claros y sin perder el estilo
-                de Ponte Tapas.
+                Hemos reunido la carta del restaurante por bloques, con precios
+                claros y sin perder el estilo de Ponte Tapas.
               </p>
               <a
                 href={`${SITE_BASE_URL}carta`}
@@ -522,10 +531,15 @@ function Landing() {
                   {CONTACT.addressShort}<br />{CONTACT.city}
                 </dd>
               </div>
-              <div>
-                <dt className="text-cream/40 uppercase tracking-[0.18em] text-[11px] mb-3">Horario</dt>
-                <dd className="text-cream leading-relaxed">
-                  Abre a las 13:00<br />Consulta festivos
+              <div className="col-span-2 rounded-[1.5rem] border border-cream/10 bg-cream/6 p-5">
+                <dt className="mb-4 text-[11px] uppercase tracking-[0.18em] text-cream/40">Horario</dt>
+                <dd className="space-y-2 text-cream">
+                  {OPENING_HOURS.map((slot) => (
+                    <div key={slot.day} className="grid grid-cols-[5.25rem_1fr] gap-4 text-sm sm:grid-cols-[6.25rem_1fr] sm:text-base">
+                      <span className="capitalize text-cream/72">{slot.day}</span>
+                      <span className="font-semibold tabular-nums text-cream">{slot.hours}</span>
+                    </div>
+                  ))}
                 </dd>
               </div>
             </dl>

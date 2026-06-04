@@ -32,7 +32,7 @@ export const Route = createFileRoute("/carta")({
       { title: "Carta — Ponte Tapas" },
       {
         name: "description",
-        content: "Carta real de Ponte Tapas en Pontevedra con platos y precios.",
+        content: "Carta de Ponte Tapas en Pontevedra con platos y precios.",
       },
       { property: "og:title", content: "Carta — Ponte Tapas" },
       {
@@ -115,14 +115,14 @@ function CartaPage() {
             <div>
               <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-sky">
                 <span className="h-px w-10 bg-sky" />
-                Carta real
+                Carta
               </div>
               <h1 className="mt-12 font-script text-[clamp(4rem,10vw,8.5rem)] leading-[0.95] text-cream sm:mt-14">
                 La carta.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
-                Listado completo extraído de la carta real del restaurante. Está ordenada por
-                los mismos bloques del PDF y con precios visibles para decidir rápido.
+                Carta completa del restaurante, ordenada por bloques y con precios
+                visibles para decidir rápido.
               </p>
             </div>
 
@@ -184,7 +184,7 @@ function CartaPage() {
             Mostrando <span className="font-semibold text-foreground">{visibleItems}</span> de{" "}
             <span className="font-semibold text-foreground">{MENU_ITEM_COUNT}</span> platos.
           </p>
-          <p>Precios en euros · Carta real del PDF facilitado.</p>
+          <p>Precios en euros · Carta del restaurante.</p>
         </div>
 
         {filteredSections.length === 0 ? (

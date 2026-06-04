@@ -9,6 +9,16 @@ export const CONTACT = {
   mapsEmbedUrl: "https://www.google.com/maps?q=R%C3%BAa%20Real%2C%2017%2C%2036002%20Pontevedra&output=embed",
 };
 
+export const OPENING_HOURS = [
+  { day: "jueves", hours: "13:00–16:00" },
+  { day: "viernes", hours: "13:00–16:00, 20:30–24:00" },
+  { day: "sábado", hours: "13:00–16:00, 20:30–24:00" },
+  { day: "domingo", hours: "13:00–16:00" },
+  { day: "lunes", hours: "13:00–16:00" },
+  { day: "martes", hours: "13:00–16:00" },
+  { day: "miércoles", hours: "13:00–16:00" },
+];
+
 export type MenuItem = {
   name: string;
   price: string;
