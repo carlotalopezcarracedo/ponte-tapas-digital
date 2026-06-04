@@ -135,22 +135,20 @@ function CartaPage() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-x-16 gap-y-16 lg:grid-cols-2">
+        <div className="mx-auto max-w-5xl">
+          <div className="space-y-16">
             {MENU_SECTIONS.map((section, index) => (
               <section
                 key={section.id}
                 id={section.id}
                 className="scroll-mt-36 border-t border-ink/20 pt-7"
               >
-                <div className="mb-6 grid grid-cols-[auto_1fr] gap-x-4 gap-y-3">
+                <div className="mb-6 grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 sm:gap-x-6">
                   <span className="pt-2 text-xs font-semibold tabular-nums tracking-[0.22em] text-muted-foreground">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h2 className={`font-script text-5xl leading-[0.95] sm:text-6xl ${
-                      section.title.length > 20 ? "max-w-[12ch] text-balance" : ""
-                    }`}>
+                    <h2 className="font-script text-5xl leading-[0.95] text-balance sm:text-6xl">
                       {section.title}
                     </h2>
                     <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
