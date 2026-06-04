@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { Logo } from "@/components/Logo";
-import heroImg from "@/assets/hero.jpg";
-import aboutImg from "@/assets/about.jpg";
+import { CONTACT, MENU_ITEM_COUNT, MENU_SECTIONS } from "@/lib/site-data";
 
 const SITE_BASE_URL = import.meta.env.BASE_URL;
 const publicImage = (fileName: string) => `${SITE_BASE_URL}${fileName}`;
+const RESTAURANT_IMAGE = publicImage("ChatGPT%20Image%204%20jun%202026,%2010_39_03.png");
 
 const PRODUCT_IMAGES = {
   pulpo: publicImage("ChatGPT%20Image%203%20jun%202026,%2015_41_47.png"),
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Tapas, raciones y buen ambiente en el centro de Pontevedra. Cocina casera, producto local y trato cercano. Reserva por WhatsApp.",
+          "Tapas, raciones y buen ambiente en el centro de Pontevedra. Cocina casera, producto local y trato cercano. Llama para reservar.",
       },
       { property: "og:title", content: "Ponte Tapas — Pontevedra" },
       {
@@ -37,9 +37,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Landing,
 });
-
-const WHATSAPP_URL =
-  "https://wa.me/34600000000?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20mesa%20en%20Ponte%20Tapas";
 
 const NAV = [
   { href: "#sobre", label: "Sobre" },
@@ -179,9 +176,7 @@ function Landing() {
             ))}
           </ul>
           <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={CONTACT.phoneHref}
             className="inline-flex items-center rounded-full bg-ink px-4 py-2 text-xs sm:text-sm font-medium text-cream hover:opacity-90 transition"
           >
             Reservar
@@ -193,8 +188,8 @@ function Landing() {
       <section id="top" className="relative overflow-hidden bg-ink text-cream">
         <div className="absolute inset-0">
           <img
-            src={heroImg}
-            alt="Interior de Ponte Tapas en Pontevedra"
+            src={RESTAURANT_IMAGE}
+            alt="Interior real de Ponte Tapas en Pontevedra"
             className="h-full w-full object-cover opacity-55"
             width={1600}
             height={1200}
@@ -221,13 +216,11 @@ function Landing() {
 
             <div className="flex flex-wrap items-center gap-3 pt-4">
               <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={CONTACT.phoneHref}
                 className="inline-flex items-center gap-2 rounded-full bg-sky px-7 py-3.5 text-sm font-medium text-ink hover:bg-sky/90 transition"
               >
                 <span className="h-2 w-2 rounded-full bg-ink animate-pulse" />
-                Reservar por WhatsApp
+                Llamar para reservar
               </a>
               <a
                 href={`${SITE_BASE_URL}carta`}
@@ -238,9 +231,9 @@ function Landing() {
             </div>
 
             <div className="flex flex-wrap gap-x-8 gap-y-3 pt-10 text-xs uppercase tracking-[0.18em] text-cream/60">
-              <span>★ 4,8 en Google</span>
-              <span>· Cocina abierta hasta las 23:30</span>
-              <span>· Reservas por WhatsApp</span>
+              <span>★ 4,5 en Google</span>
+              <span>· Abre a las 13:00</span>
+              <span>· Reservas por teléfono</span>
             </div>
           </div>
         </div>
@@ -277,13 +270,13 @@ function Landing() {
             </p>
             <div className="grid grid-cols-2 gap-6 max-w-md">
               {[
-                { k: "+30", v: "tapas y raciones" },
-                { k: "100%", v: "producto local" },
-                { k: "4,8★", v: "en Google" },
+                { k: `${MENU_ITEM_COUNT}`, v: "platos en carta" },
+                { k: "Real", v: "carta del PDF" },
+                { k: "4,5★", v: "en Google" },
                 { k: "Casco", v: "antiguo · Pontevedra" },
               ].map((s) => (
                 <div key={s.v} className="border-t border-ink/15 pt-4">
-                  <p className="font-script text-4xl leading-none text-ink">{s.k}</p>
+                  <p className="text-3xl font-semibold leading-none tracking-tight text-ink">{s.k}</p>
                   <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground mt-2">{s.v}</p>
                 </div>
               ))}
@@ -293,8 +286,8 @@ function Landing() {
           <div className="order-1 lg:order-2 relative">
             <div className="aspect-[4/5] overflow-hidden rounded-[2rem] bg-stone">
               <img
-                src={aboutImg}
-                alt="Comedor de Ponte Tapas"
+                src={RESTAURANT_IMAGE}
+                alt="Comedor real de Ponte Tapas"
                 className="h-full w-full object-cover"
                 loading="lazy"
                 width={1200}
@@ -307,6 +300,63 @@ function Landing() {
             <div className="absolute -top-4 -right-4 hidden sm:block bg-ink text-cream px-5 py-2 rounded-full">
               <span className="font-script text-2xl text-sky">desde 2024</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CARTA */}
+      <section id="carta" className="relative overflow-hidden bg-ink text-cream">
+        <div className="absolute inset-0 noise-overlay opacity-30 pointer-events-none" />
+        <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
+          <div className="mb-14 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-sky">
+                <span className="h-px w-10 bg-sky" /> Carta real
+              </div>
+              <h2 className="mt-6 font-script text-7xl leading-[0.85] -rotate-[2deg] sm:text-8xl lg:text-9xl">
+                Qué vas a<br />
+                <span className="text-sky">pedir</span>.
+              </h2>
+            </div>
+            <div className="max-w-md">
+              <p className="text-base leading-relaxed text-cream/70">
+                Hemos recuperado la carta real del restaurante y la dejamos
+                ordenada por bloques, con precios claros y sin perder el estilo
+                de Ponte Tapas.
+              </p>
+              <a
+                href={`${SITE_BASE_URL}carta`}
+                className="mt-6 inline-flex items-center rounded-full bg-sky px-7 py-3.5 text-sm font-semibold text-ink transition hover:bg-sky/90"
+              >
+                Ver carta completa
+              </a>
+            </div>
+          </div>
+
+          <div className="grid gap-px overflow-hidden rounded-3xl bg-cream/10 md:grid-cols-2 lg:grid-cols-3">
+            {MENU_SECTIONS.map((section, index) => (
+              <article
+                key={section.id}
+                className="bg-ink p-7 transition-colors hover:bg-ink/75"
+              >
+                <div className="mb-6 flex items-baseline justify-between gap-4">
+                  <h3 className="font-script text-5xl leading-[0.85] -rotate-[1deg]">
+                    {section.title}
+                  </h3>
+                  <span className="text-xs tabular-nums text-cream/40">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <ul className="space-y-3">
+                  {section.items.slice(0, 3).map((item) => (
+                    <li key={item.name} className="grid grid-cols-[1fr_auto] gap-4 text-sm">
+                      <span className="text-cream/82">{item.name}</span>
+                      <span className="font-semibold tabular-nums text-sky">{item.price}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -436,16 +486,14 @@ function Landing() {
                 ¿Te guardamos<br /><span className="text-sky">mesa</span>?
               </h2>
               <p className="text-cream/70 leading-relaxed max-w-md mt-8 mb-10 text-lg">
-                Escríbenos por WhatsApp y te confirmamos disponibilidad. Sin
-                formularios, sin esperas.
+                Llámanos y te confirmamos disponibilidad. Sin formularios,
+                sin esperas.
               </p>
               <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-sky px-8 py-4 text-sm font-medium text-ink hover:bg-sky/90 transition"
+                href={CONTACT.phoneHref}
+                className="inline-flex items-center gap-2 rounded-full bg-sky px-8 py-4 text-sm font-semibold text-ink hover:bg-sky/90 transition"
               >
-                Reservar por WhatsApp
+                Llamar al {CONTACT.phone}
                 <span aria-hidden>→</span>
               </a>
             </div>
@@ -453,12 +501,16 @@ function Landing() {
             <dl className="grid grid-cols-2 gap-x-6 gap-y-10 text-sm self-end">
               <div>
                 <dt className="text-cream/40 uppercase tracking-[0.18em] text-[11px] mb-3">Teléfono</dt>
-                <dd className="font-script text-3xl text-cream">+34 600 000 000</dd>
+                <dd>
+                  <a href={CONTACT.phoneHref} className="text-2xl font-semibold tracking-tight text-cream hover:text-sky transition">
+                    {CONTACT.phone}
+                  </a>
+                </dd>
               </div>
               <div>
                 <dt className="text-cream/40 uppercase tracking-[0.18em] text-[11px] mb-3">Instagram</dt>
                 <dd>
-                  <a href="https://instagram.com/pontetapas" target="_blank" rel="noopener noreferrer" className="font-script text-3xl text-cream hover:text-sky transition">
+                  <a href="https://instagram.com/pontetapas" target="_blank" rel="noopener noreferrer" className="text-2xl font-semibold tracking-tight text-cream hover:text-sky transition">
                     @pontetapas
                   </a>
                 </dd>
@@ -466,13 +518,13 @@ function Landing() {
               <div>
                 <dt className="text-cream/40 uppercase tracking-[0.18em] text-[11px] mb-3">Dirección</dt>
                 <dd className="text-cream leading-relaxed">
-                  Rúa de ejemplo, 12<br />36001 Pontevedra
+                  {CONTACT.addressShort}<br />{CONTACT.city}
                 </dd>
               </div>
               <div>
                 <dt className="text-cream/40 uppercase tracking-[0.18em] text-[11px] mb-3">Horario</dt>
                 <dd className="text-cream leading-relaxed">
-                  Mar–Dom · 12:30–16:00<br />20:00–23:30
+                  Abre a las 13:00<br />Consulta festivos
                 </dd>
               </div>
             </dl>
@@ -493,13 +545,13 @@ function Landing() {
               coche, hay aparcamiento a 3 minutos.
             </p>
             <p className="text-sm text-foreground mb-8 font-medium">
-              Rúa de ejemplo, 12 · 36001 Pontevedra
+              {CONTACT.address}
             </p>
             <a
-              href="https://maps.google.com/?q=Pontevedra"
+              href={CONTACT.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-cream hover:opacity-90 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-cream hover:opacity-90 transition"
             >
               Cómo llegar
               <span aria-hidden>→</span>
@@ -509,7 +561,7 @@ function Landing() {
           <div className="rounded-3xl overflow-hidden border border-border/60 aspect-[4/3] bg-stone shadow-xl">
             <iframe
               title="Ubicación de Ponte Tapas en Pontevedra"
-              src="https://www.google.com/maps?q=Pontevedra,Spain&output=embed"
+              src={CONTACT.mapsEmbedUrl}
               className="h-full w-full grayscale-[0.4] contrast-[0.95]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -543,15 +595,13 @@ function Landing() {
         </div>
       </footer>
 
-      {/* Floating WhatsApp CTA — mobile */}
+      {/* Floating call CTA — mobile */}
       <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={CONTACT.phoneHref}
         className="md:hidden fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-sky px-5 py-3 text-sm font-medium text-ink shadow-xl"
       >
         <span className="h-2 w-2 rounded-full bg-ink animate-pulse" />
-        Reservar
+        Llamar
       </a>
     </div>
   );
