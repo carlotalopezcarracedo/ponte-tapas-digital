@@ -99,6 +99,7 @@
 
 @layer base {
   * {
+    box-sizing: border-box;
     border-color: var(--color-border);
   }
   html {
@@ -189,5 +190,10 @@
 .noise-overlay {
   background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.06) 1px, transparent 0);
   background-size: 4px 4px;
+}
+
+.content-shell {
+  width: min(calc(100% - 2.5rem), 80rem);
+  margin-inline: auto;
 }
 

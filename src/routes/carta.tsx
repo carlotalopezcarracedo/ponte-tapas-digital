@@ -339,7 +339,7 @@ function CartaPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5">
+        <nav className="content-shell flex items-center justify-between py-3.5">
           <a href={SITE_BASE_URL} className="flex items-center gap-3">
             <Logo size={42} />
             <span className="hidden font-script text-2xl leading-none sm:inline">Ponte Tapas</span>
@@ -370,7 +370,7 @@ function CartaPage() {
 
       <section className="relative overflow-hidden bg-ink text-cream">
         <div className="absolute inset-0 noise-overlay opacity-25" />
-        <div className="relative mx-auto max-w-7xl px-5 py-16 sm:py-24 lg:py-28">
+        <div className="content-shell relative py-16 sm:py-24 lg:py-28">
           <a
             href={SITE_BASE_URL}
             className="mb-10 inline-flex items-center gap-2 text-sm text-cream/70 transition hover:text-sky"
@@ -379,18 +379,18 @@ function CartaPage() {
             Volver a la home
           </a>
 
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-            <div>
+          <div className="grid min-w-0 gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div className="min-w-0">
               <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-sky">
                 <span className="h-px w-10 bg-sky" />
                 Carta digital
               </div>
-              <h1 className="mt-6 max-w-3xl font-script text-[clamp(4rem,12vw,11rem)] leading-[0.78] text-cream">
+              <h1 className="mt-6 max-w-full font-script text-[clamp(3.7rem,12vw,11rem)] leading-[0.78] text-cream lg:max-w-3xl">
                 <span className="block">Comer</span>
                 <span className="block">rico,</span>
                 <span className="block text-sky">sin líos.</span>
               </h1>
-              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-cream/75 sm:text-xl">
+              <p className="mt-8 max-w-full text-lg leading-relaxed text-cream/75 sm:text-xl lg:max-w-2xl">
                 Entrantes, raciones, principales, postres y bebidas ordenados para que encuentres
                 rápido lo que te apetece. Precios claros y platos pensados para compartir.
               </p>
@@ -414,7 +414,7 @@ function CartaPage() {
               </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid min-w-0 gap-3 sm:grid-cols-2">
               {[
                 { label: "Menú del día", value: "14,00 €", icon: Euro },
                 { label: "Raciones", value: "desde 8,90 €", icon: Soup },
@@ -436,7 +436,7 @@ function CartaPage() {
       </section>
 
       <section className="sticky top-[69px] z-40 border-b border-border/60 bg-background/92 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-        <div className="mx-auto max-w-7xl px-5 py-4">
+        <div className="content-shell py-4">
           <label className="flex h-12 w-full items-center gap-3 rounded-full border border-border bg-card px-4 shadow-sm lg:max-w-md">
             <Search className="h-4 w-4 text-muted-foreground" />
             <input
@@ -464,7 +464,7 @@ function CartaPage() {
         </div>
       </section>
 
-      <main className="mx-auto max-w-7xl px-5 py-14 sm:py-20">
+      <main className="content-shell py-14 sm:py-20">
         <section className="mb-14 rounded-[2rem] bg-sky p-6 text-ink sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
             <div>
@@ -579,7 +579,7 @@ function CartaPage() {
       </main>
 
       <section className="bg-ink text-cream">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="content-shell grid gap-10 py-16 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-sky">Reserva</p>
             <h2 className="mt-4 font-script text-6xl leading-[0.85] sm:text-7xl">
