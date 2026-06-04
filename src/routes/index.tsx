@@ -297,8 +297,9 @@ function Landing() {
             <div className="absolute -bottom-6 -left-6 sm:-left-10 flex h-32 w-32 sm:h-40 sm:w-40 items-center justify-center rounded-full bg-sky text-ink animate-float shadow-xl">
               <span className="font-script text-5xl sm:text-6xl -rotate-12">hola!</span>
             </div>
-            <div className="absolute -top-4 -right-4 hidden sm:block bg-ink text-cream px-5 py-2 rounded-full">
-              <span className="font-script text-2xl text-sky">desde 2024</span>
+            <div className="absolute -top-4 -right-4 hidden items-center gap-2 rounded-full bg-ink px-5 py-2 text-cream sm:flex">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-cream/80">desde</span>
+              <span className="font-script text-3xl leading-none text-sky">2022</span>
             </div>
           </div>
         </div>
