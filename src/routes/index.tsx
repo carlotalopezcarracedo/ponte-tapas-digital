@@ -239,12 +239,12 @@ function Landing() {
         </div>
 
         {/* Marquee */}
-        <div className="relative border-t border-cream/10 bg-ink py-5 overflow-hidden">
+        <div className="relative overflow-hidden border-y border-ink/10 bg-sky py-5">
           <div className="flex w-max animate-marquee whitespace-nowrap">
             {[...MARQUEE, ...MARQUEE, ...MARQUEE, ...MARQUEE].map((w, i) => (
-              <span key={i} className="font-script text-4xl sm:text-5xl text-cream/90 mx-8 inline-flex items-center gap-8">
+              <span key={i} className="mx-8 inline-flex items-center gap-8 font-script text-4xl text-ink sm:text-5xl">
                 {w}
-                <span className="text-sky">✦</span>
+                <span className="text-cream">✦</span>
               </span>
             ))}
           </div>
