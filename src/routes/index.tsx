@@ -43,18 +43,10 @@ const WHATSAPP_URL =
 
 const NAV = [
   { href: "#sobre", label: "Sobre" },
-  { href: "#carta", label: "Carta" },
+  { href: `${SITE_BASE_URL}carta`, label: "Carta" },
   { href: "#destacados", label: "Destacados" },
   { href: "#galeria", label: "Galería" },
   { href: "#ubicacion", label: "Ubicación" },
-];
-
-const CATEGORIES = [
-  { name: "Mar", desc: "Producto gallego servido sin complicaciones.", items: ["Pulpo á feira", "Vieiras"] },
-  { name: "Cuchara", desc: "Platos calientes para comer despacio.", items: ["Fabada"] },
-  { name: "Bocados", desc: "Pequeñas piezas para pedir varias y compartir.", items: ["Hamburguesitas", "Tartaletas de espinaca", "Gyozas vegetales"] },
-  { name: "Para compartir", desc: "Un poco de todo en el centro de la mesa.", items: ["Pulpo á feira", "Vieiras", "Hamburguesitas", "Gyozas vegetales"] },
-  { name: "Bebidas", desc: "Cañas frías, vinos de la tierra y refrescos.", items: ["Albariño", "Mencía", "Estrella Galicia", "Vermut de grifo"] },
 ];
 
 const HIGHLIGHTS = [
@@ -238,7 +230,7 @@ function Landing() {
                 Reservar por WhatsApp
               </a>
               <a
-                href="#carta"
+                href={`${SITE_BASE_URL}carta`}
                 className="inline-flex items-center rounded-full border border-cream/25 px-7 py-3.5 text-sm font-medium text-cream hover:border-cream/60 transition"
               >
                 Ver carta
@@ -314,64 +306,6 @@ function Landing() {
             </div>
             <div className="absolute -top-4 -right-4 hidden sm:block bg-ink text-cream px-5 py-2 rounded-full">
               <span className="font-script text-2xl text-sky">desde 2024</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CARTA */}
-      <section id="carta" className="relative bg-ink text-cream overflow-hidden">
-        <div className="absolute inset-0 noise-overlay opacity-30 pointer-events-none" />
-        <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
-            <div>
-              <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-sky">
-                <span className="h-px w-10 bg-sky" /> La carta
-              </div>
-              <h2 className="font-script text-7xl sm:text-8xl lg:text-9xl leading-[0.85] mt-6 -rotate-[2deg]">
-                Qué vas a<br /><span className="text-sky">comer</span>.
-              </h2>
-            </div>
-            <p className="text-cream/70 max-w-md text-base leading-relaxed">
-              Una carta corta y honesta. Cambia con la temporada y con lo que
-              esté bueno en el mercado. Si tienes dudas, pregunta — te
-              recomendamos encantados.
-            </p>
-          </div>
-
-          <div className="grid gap-px bg-cream/10 rounded-3xl overflow-hidden md:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((c, i) => (
-              <article
-                key={c.name}
-                className="bg-ink p-8 flex flex-col gap-5 min-h-[280px] group hover:bg-ink/70 transition-colors"
-              >
-                <div className="flex items-baseline justify-between">
-                  <h3 className="font-script text-5xl leading-none -rotate-[1deg]">{c.name}</h3>
-                  <span className="text-xs text-cream/40 tabular-nums">0{i + 1}</span>
-                </div>
-                <p className="text-sm text-cream/60 leading-relaxed">{c.desc}</p>
-                <ul className="mt-auto space-y-1.5 text-sm text-cream/85">
-                  {c.items.map((it) => (
-                    <li key={it} className="flex items-center gap-2">
-                      <span className="h-1 w-1 rounded-full bg-sky" /> {it}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-            <div className="bg-sky text-ink p-8 flex flex-col justify-between min-h-[280px]">
-              <p className="font-script text-6xl leading-[0.85] -rotate-[3deg]">
-                buen<br />provecho!
-              </p>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-ink hover:opacity-70 transition"
-              >
-                Reservar mesa
-                <span aria-hidden>→</span>
-              </a>
             </div>
           </div>
         </div>
@@ -593,7 +527,7 @@ function Landing() {
               Hasta <span className="text-sky">pronto</span>.
             </h3>
             <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-cream/80">
-              <li><a href="#carta" className="hover:text-sky transition">Carta</a></li>
+              <li><a href={`${SITE_BASE_URL}carta`} className="hover:text-sky transition">Carta</a></li>
               <li><a href="#reservas" className="hover:text-sky transition">Reservas</a></li>
               <li><a href="#ubicacion" className="hover:text-sky transition">Ubicación</a></li>
               <li>

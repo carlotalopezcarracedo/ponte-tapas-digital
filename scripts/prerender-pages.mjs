@@ -26,8 +26,6 @@ function getPagesBasePath() {
 
 const basePath = getPagesBasePath();
 const routerBasePath = basePath === "/" ? "/" : basePath.slice(0, -1);
-const renderUrl = new URL(basePath, "https://example.com");
-
 process.env.NODE_ENV ??= "production";
 process.env.TSS_ROUTER_BASEPATH ??= routerBasePath;
 
@@ -38,21 +36,37 @@ if (typeof handler.fetch !== "function") {
   throw new Error(`Expected a fetch handler in ${serverEntry}`);
 }
 
-const response = await handler.fetch(new Request(renderUrl));
-
-if (!response.ok) {
-  throw new Error(`Failed to prerender ${renderUrl.pathname}: HTTP ${response.status}`);
-}
-
-const html = await response.text();
-
-if (!html.startsWith("<!DOCTYPE html>")) {
-  throw new Error("Prerendered response did not look like a complete HTML document.");
-}
-
 await mkdir(clientDir, { recursive: true });
-await writeFile(path.join(clientDir, "index.html"), html);
-await writeFile(path.join(clientDir, "404.html"), html);
+
+const pages = [
+  { route: "", file: "index.html" },
+  { route: "carta", file: path.join("carta", "index.html") },
+];
+
+let fallbackHtml = "";
+
+for (const page of pages) {
+  const renderUrl = new URL(`${basePath}${page.route}`, "https://example.com");
+  const response = await handler.fetch(new Request(renderUrl));
+
+  if (!response.ok) {
+    throw new Error(`Failed to prerender ${renderUrl.pathname}: HTTP ${response.status}`);
+  }
+
+  const html = await response.text();
+
+  if (!html.startsWith("<!DOCTYPE html>")) {
+    throw new Error(`Prerendered response for ${renderUrl.pathname} did not look like a complete HTML document.`);
+  }
+
+  const outputPath = path.join(clientDir, page.file);
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, html);
+
+  if (page.route === "") fallbackHtml = html;
+}
+
+await writeFile(path.join(clientDir, "404.html"), fallbackHtml);
 await writeFile(path.join(clientDir, ".nojekyll"), "");
 
 console.log(`Prerendered GitHub Pages HTML for ${basePath} into dist/client.`);
