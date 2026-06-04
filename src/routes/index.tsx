@@ -198,18 +198,18 @@ function Landing() {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-5 pt-20 pb-28 sm:pt-28 sm:pb-36 lg:pt-36 lg:pb-44">
-          <div className="flex flex-col items-start gap-6 max-w-3xl">
+          <div className="flex max-w-3xl flex-col items-start gap-7">
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-sky">
               <span className="h-px w-10 bg-sky" />
               Pontevedra · casco antiguo
             </div>
 
-            <h1 className="font-script text-[clamp(4rem,13vw,11rem)] leading-[0.78] tracking-tight text-cream">
+            <h1 className="mt-5 font-script text-[clamp(3.8rem,12vw,9.8rem)] leading-[0.9] tracking-tight text-cream sm:mt-7">
               <span className="block -rotate-[3deg]">Ponte</span>
               <span className="block translate-x-[8%] text-sky -rotate-[2deg]">Tapas</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-cream/80 max-w-xl leading-relaxed mt-2">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/80 sm:text-xl">
               Tapas, raciones y buen ambiente en el corazón de Pontevedra.
               Cocina sencilla, producto de aquí, gente cercana.
             </p>
@@ -256,7 +256,7 @@ function Landing() {
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20 items-center">
           <div className="order-2 lg:order-1">
             <SectionLabel>Sobre nosotros</SectionLabel>
-            <h2 className="font-script text-6xl sm:text-7xl lg:text-8xl leading-[0.85] mt-6 mb-8 -rotate-[1deg]">
+            <h2 className="mb-8 mt-10 font-script text-6xl leading-[0.9] -rotate-[1deg] sm:text-7xl lg:text-8xl">
               Un sitio<br />de barrio.
             </h2>
             <p className="text-lg text-foreground/80 leading-relaxed mb-5">
@@ -314,7 +314,7 @@ function Landing() {
               <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-sky">
                 <span className="h-px w-10 bg-sky" /> Carta real
               </div>
-              <h2 className="mt-6 font-script text-7xl leading-[0.85] -rotate-[2deg] sm:text-8xl lg:text-9xl">
+              <h2 className="mt-10 font-script text-7xl leading-[0.9] -rotate-[2deg] sm:text-8xl lg:text-9xl">
                 Qué vas a<br />
                 <span className="text-sky">pedir</span>.
               </h2>
@@ -341,7 +341,7 @@ function Landing() {
                 className="bg-ink p-7 transition-colors hover:bg-ink/75"
               >
                 <div className="mb-6 flex items-baseline justify-between gap-4">
-                  <h3 className="font-script text-5xl leading-[0.85] -rotate-[1deg]">
+                  <h3 className="font-script text-4xl leading-[0.95] -rotate-[1deg] sm:text-5xl">
                     {section.title}
                   </h3>
                   <span className="text-xs tabular-nums text-cream/40">
@@ -351,8 +351,8 @@ function Landing() {
                 <ul className="space-y-3">
                   {section.items.slice(0, 3).map((item) => (
                     <li key={item.name} className="grid grid-cols-[1fr_auto] gap-4 text-sm">
-                      <span className="text-cream/82">{item.name}</span>
-                      <span className="font-semibold tabular-nums text-sky">{item.price}</span>
+                      <span className="min-w-0 text-cream/82">{item.name}</span>
+                      <span className="shrink-0 font-semibold tabular-nums text-sky">{item.price}</span>
                     </li>
                   ))}
                 </ul>
@@ -367,7 +367,7 @@ function Landing() {
         <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <SectionLabel>Lo más pedido</SectionLabel>
-            <h2 className="font-script text-7xl sm:text-8xl lg:text-9xl leading-[0.85] mt-6 -rotate-[1deg]">
+            <h2 className="mt-10 font-script text-7xl leading-[0.9] -rotate-[1deg] sm:text-8xl lg:text-9xl">
               Los <span className="text-sky">favoritos</span><br />de la casa.
             </h2>
           </div>
@@ -407,7 +407,7 @@ function Landing() {
         <div className="mx-auto max-w-6xl px-5 py-24 sm:py-28">
           <div className="text-center mb-16">
             <SectionLabel>Lo que dicen</SectionLabel>
-            <h2 className="font-script text-6xl sm:text-7xl lg:text-8xl leading-[0.85] mt-6">
+            <h2 className="mt-10 font-script text-6xl leading-[0.9] sm:text-7xl lg:text-8xl">
               Palabras de <span className="text-sky">la clientela</span>.
             </h2>
           </div>
@@ -458,7 +458,7 @@ function Landing() {
       <section id="galeria" className="mx-auto max-w-7xl px-5 py-24 sm:py-32">
         <div className="mb-14 max-w-2xl">
           <SectionLabel>Galería</SectionLabel>
-          <h2 className="font-script text-7xl sm:text-8xl leading-[0.85] mt-6 -rotate-[1deg]">
+          <h2 className="mt-10 font-script text-7xl leading-[0.9] -rotate-[1deg] sm:text-8xl">
             Un vistazo<br />a los <span className="text-sky">platos</span>.
           </h2>
         </div>
@@ -483,7 +483,7 @@ function Landing() {
               <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-sky">
                 <span className="h-px w-10 bg-sky" /> Reservas
               </div>
-              <h2 className="font-script text-7xl sm:text-8xl lg:text-9xl leading-[0.82] mt-6 -rotate-[2deg]">
+              <h2 className="mt-10 font-script text-7xl leading-[0.9] -rotate-[2deg] sm:text-8xl lg:text-9xl">
                 ¿Te guardamos<br /><span className="text-sky">mesa</span>?
               </h2>
               <p className="text-cream/70 leading-relaxed max-w-md mt-8 mb-10 text-lg">
@@ -538,7 +538,7 @@ function Landing() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16 items-center">
           <div>
             <SectionLabel>Cómo llegar</SectionLabel>
-            <h2 className="font-script text-7xl sm:text-8xl leading-[0.85] mt-6 -rotate-[1deg]">
+            <h2 className="mt-10 font-script text-7xl leading-[0.9] -rotate-[1deg] sm:text-8xl">
               Estamos en<br /><span className="text-sky">Pontevedra</span>.
             </h2>
             <p className="text-muted-foreground leading-relaxed mt-8 mb-4 text-lg">

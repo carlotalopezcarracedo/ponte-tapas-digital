@@ -186,7 +186,8 @@
 }
 
 .content-shell {
-  width: min(calc(100% - 2.5rem), 80rem);
+  width: calc(100vw - 2.5rem);
+  max-width: 80rem;
   margin-inline: auto;
 }
 

@@ -117,7 +117,7 @@ function CartaPage() {
                 <span className="h-px w-10 bg-sky" />
                 Carta real
               </div>
-              <h1 className="mt-6 font-script text-[clamp(4.2rem,12vw,10rem)] leading-[0.8] text-cream">
+              <h1 className="mt-12 font-script text-[clamp(4rem,10vw,8.5rem)] leading-[0.95] text-cream sm:mt-14">
                 La carta.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-cream/75">
@@ -215,10 +215,10 @@ function CartaPage() {
                 >
                   <div className="mb-5 flex items-start justify-between gap-4 border-b border-border/70 pb-5">
                     <div>
-                      <p className="mb-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                      <p className="mb-5 text-xs uppercase tracking-[0.18em] text-muted-foreground">
                         Bloque {String(index + 1).padStart(2, "0")}
                       </p>
-                      <h2 className="font-script text-5xl leading-[0.85] sm:text-6xl">
+                      <h2 className="font-script text-4xl leading-[1] sm:text-5xl">
                         {section.title}
                       </h2>
                       <p className="mt-3 text-sm text-muted-foreground">{section.subtitle}</p>
@@ -234,10 +234,10 @@ function CartaPage() {
                         key={item.name}
                         className="grid grid-cols-[1fr_auto] items-start gap-4 py-4"
                       >
-                        <p className="text-base font-medium leading-snug text-foreground">
+                        <p className="min-w-0 text-base font-medium leading-snug text-foreground">
                           {item.name}
                         </p>
-                        <p className="rounded-full bg-stone px-3 py-1 text-sm font-semibold tabular-nums text-foreground">
+                        <p className="shrink-0 rounded-full bg-stone px-3 py-1 text-sm font-semibold tabular-nums text-foreground">
                           {item.price}
                         </p>
                       </li>
@@ -254,7 +254,7 @@ function CartaPage() {
         <div className="content-shell grid gap-8 py-14 sm:py-16 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-sky">Reserva</p>
-            <h2 className="mt-4 font-script text-6xl leading-[0.85] sm:text-7xl">
+            <h2 className="mt-8 font-script text-6xl leading-[0.95] sm:text-7xl">
               ¿Te guardamos<br />mesa?
             </h2>
             <p className="mt-5 max-w-xl text-cream/65">
